@@ -16,9 +16,9 @@ string operation(int operation)
     case 1:
         return "-";
     case 2:
-        return "×";
+        return "\\times";
     case 3:
-        return "÷";
+        return "\\div";
     }
     return NULL;
 }
@@ -35,24 +35,25 @@ void randomGenerator(string *q, int num)
         switch (type)
         {
         case 0: //integer operations
-            q[i] = std::to_string(rand() % MAX);
-            q[i] += (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "=";
+            q[i] = "\\item $" + std::to_string(rand() % MAX);
+            q[i] += (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "=$";
             break;
         case 1: //fraction operations
-            q[i] = std::to_string(rand() % MAX);
-            q[i] += "/" + std::to_string(rand() % MAX) + (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "/" + std::to_string(rand() % MAX) + "=";
+            q[i] = "\\item $";
+            q[i] += "\\frac{" + std::to_string(rand() % MAX) + "}{" +
+                    std::to_string((rand() % (MAX - 1)) + 1) + "}" + (operation(rand() % MAX % 4)) + "\\frac{" + std::to_string((rand() % (MAX - 1)) + 1) + "}{" + std::to_string((rand() % (MAX - 1)) + 1) + "}=$";
         case 2: //decimal operations
-            q[i] = std::to_string(rand() % MAX);
-            q[i] += "." + std::to_string(rand() % MAX) + (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "." + std::to_string(rand() % MAX) + "=";
+            q[i] = "\\item $" + std::to_string(rand() % MAX);
+            q[i] += "." + std::to_string((rand() % (MAX - 1)) + 1) + (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "." + std::to_string((rand() % (MAX - 1)) + 1) + "=$";
         case 3: //integer with fraction
-            q[i] = std::to_string(rand() % MAX);
-            q[i] += (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "/" + std::to_string(rand() % MAX) + "=";
+            q[i] = "\\item $" + std::to_string(rand() % MAX);
+            q[i] += (operation(rand() % MAX % 4)) + "\\frac{" + std::to_string((rand() % (MAX - 1)) + 1) + "}{" + std::to_string((rand() % (MAX - 1)) + 1) + "}=$";
         case 4: //integer with decimal
-            q[i] = std::to_string(rand() % MAX);
-            q[i] += (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "." + std::to_string(rand() % MAX) + "=";
+            q[i] = "\\item $" + std::to_string(rand() % MAX);
+            q[i] += (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "." + std::to_string((rand() % (MAX - 1)) + 1) + "=$";
         case 5: //decimal with fraction
-            q[i] = std::to_string(rand() % MAX);
-            q[i] += "." + std::to_string(rand() % MAX) + (operation(rand() % MAX % 4)) + std::to_string(rand() % MAX) + "/" + std::to_string(rand() % MAX) + "=";
+            q[i] = "\\item $" + std::to_string(rand() % MAX);
+            q[i] += "." + std::to_string(rand() % MAX) + (operation(rand() % MAX % 4)) + "\\frac{" + std::to_string((rand() % (MAX - 1)) + 1) + "}{" + std::to_string((rand() % (MAX - 1)) + 1) + "}=$";
         default:
             break;
         }
